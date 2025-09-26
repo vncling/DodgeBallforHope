@@ -1,0 +1,854 @@
+<!-- ===== Dodgeball for Hope — Bootstrap 5 + Apple.com Aesthetic, Flyer‑Accented ===== -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Dodgeball for Hope — Charity Tournament</title>
+   <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Luckiest+Guy&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Shrikhand&family=Archivo:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ===== Design System ===== */
+    html {
+  scroll-behavior: smooth;
+}
+    :root{
+      /* Flyer accents */
+      --cream:#eae6bf; --orange:#bf832d; --orange-deep:#a9641f; --gold:#d0b456; --line:#c8b88b; --brown:#76551e;
+      /* Apple-like neutrals */
+      --ink:#111111; --ink-sub:#3a3a3a; --ink-soft:#6e6e73; --bg:#fbfbfd; --card:#ffffff; --hair:#d2d2d7; --shadow:0 1px 3px rgba(0,0,0,.08),0 12px 40px rgba(0,0,0,.06);
+      --radius:26px; --radius-sm:16px; --gutter:min(5vw,48px);
+      --retro-brown:#4A2E2A;      /* outer border / CTA */
+      --retro-brown-ink:#5D4037;  /* SVG stroke */
+      --retro-orange:#F58A4B;     /* accent */
+     --retro-cream:#FDF4D9;      /* hero bg */
+     --retro-tan:#c8b88b;        /* dashed boxes */
+     --hair:#d2d2d7; --bg:#fbfbfd;
+    }
+    html,body{height:100%}
+    body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,"Archivo",sans-serif;color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:underline}
+
+    /* about */
+    /* === Simple Organizer (based on your About CSS) === */
+body{margin-top:20px;}
+@media (max-width: 991px){ .about-text{ margin-top:40px; } }
+
+.about-text h3{ font-size:45px; font-weight:700; margin:0 0 10px; }
+@media (max-width: 767px){ .about-text h3{ font-size:35px; } }
+
+.about-text h4{ font-weight:600; margin-bottom:15px; }
+@media (max-width: 767px){ .about-text h4{ font-size:18px; } }
+
+.about-text p{ font-size:18px; }
+.about-text .btn-bar{ padding-top:8px; }
+.about-text .btn-bar a{ min-width:150px; text-align:center; margin-right:10px; }
+
+/* Two-column facts list (optional) */
+.about-list{ padding-top:10px; }
+.about-list .media{ padding:5px 0; }
+.about-list label{
+  color:#3a3973; font-weight:600; width:88px; margin:0; position:relative;
+}
+.about-list label:after{
+  content:""; position:absolute; top:0; bottom:0; right:11px; width:1px; height:12px;
+  background:#3a3973; transform:rotate(15deg); margin:auto; opacity:.5;
+}
+.about-list p{ margin:0; font-size:15px; }
+
+/* Image block */
+.about-img {
+  aspect-ratio: 1 / 1;     /* force square */
+  max-width: 320px;        /* adjust size as needed */
+  margin: 0 auto;          /* center horizontally */
+  border-radius: 12px;     /* optional rounded corners */
+  overflow: hidden;
+  box-shadow: 0 5px 14px rgba(0,0,0,.06);
+}
+
+.about-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;       /* keeps proportions inside square */
+  display: block;
+}
+@media (max-width: 991px){ .about-img{ margin-top:30px; } }
+/* Centered section header */
+#about .section-title {
+  text-align: center;
+  margin-bottom: 1.25rem;
+}
+
+/* Ticket-shaped badges */
+.badge-ticket {
+  position: relative;
+  display: inline-block;
+  padding: .6rem 1rem;
+  font-weight: 800;
+  background: #fff;
+  border: 2px solid var(--hair);
+  border-radius: 14px;
+  /* notch effect */
+}
+.badge-ticket:before,
+.badge-ticket:after{
+  content:"";
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:18px;height:18px;border-radius:50%;
+  background: var(--bg, #fbfbfd); /* fallback to light page bg */
+  border:2px solid var(--hair);
+}
+.badge-ticket:before{ left:-11px; }
+.badge-ticket:after { right:-11px; }
+
+/* Larger map icon buttons */
+.map-btn{
+  display:inline-flex; align-items:center; gap:.5rem;
+  padding:.8rem 1.1rem;
+  border:1px solid var(--hair);
+  border-radius:12px;
+  background:#fff;
+  font-weight:700;
+  text-decoration:none;
+}
+.map-btn:hover{ background:#f8f8f8; }
+.map-icon{ width:28px; height:28px; display:inline-block; }
+
+/* Make the address block and maps row larger and cleaner */
+#about .location-line{ font-size:1.25rem; margin-bottom:1rem; }
+#about .maps-row{ display:flex; gap:.75rem; flex-wrap:wrap; margin-top:.25rem; }
+
+/* Section + theme tokens adapted to your palette */
+.section{ padding:100px 0; position:relative; }
+.gray-bg{ background-color:#f8f8f8; } /* subtle neutral */
+.theme-color{ color:#F58A4B; }        /* your retro orange */
+.px-btn{ padding:0 20px; line-height:42px; border-radius:5px; font-size:16px; font-weight:600; transition:.35s; }
+.px-btn.theme{ background:#F58A4B; color:#fff; border:2px solid #F58A4B; }
+.px-btn.theme:hover{ filter:brightness(.95); }
+.px-btn.theme-t{ background:transparent; border:2px solid #F58A4B; color:#F58A4B; }
+.px-btn.theme-t:hover{ background:#F58A4B; color:#fff; }
+
+    /* Navbar (Apple-esque) */
+    .nav-apple{backdrop-filter:saturate(180%) blur(20px);background:rgba(255,255,255,.72);border-bottom:1px solid var(--hair)}
+    .nav-apple .nav-link{font-weight:600;color:#000;opacity:.82}
+    .nav-apple .nav-link:hover{opacity:1}
+
+    /* Buttons themed to flyer accent */
+    .btn-primary{--bs-btn-bg:var(--orange);--bs-btn-border-color:var(--orange-deep);--bs-btn-hover-bg:var(--orange-deep);--bs-btn-hover-border-color:var(--orange-deep);--bs-btn-shadow:0 .25rem .75rem rgba(169,100,31,.25)}
+    .btn-outline-dark{--bs-btn-hover-bg:#fff;--bs-btn-border-color:var(--hair)}
+      /* Retro CTA Button */
+.btn-retro-cta{
+  background: var(--retro-brown);
+  border: 3px solid var(--retro-brown);
+  color:#fff;
+  font-weight: 800;
+  border-radius: 999px;
+  font-size: clamp(1.125rem, 2.5vw, 1.75rem);
+  padding: clamp(.75rem, 1.6vw, 1.25rem)
+           clamp(2rem, 4.5vw, 3rem);
+  line-height: 1.05;
+  box-shadow: 0 8px 20px rgba(0,0,0,.18);
+  transition: background-color .2s ease, border-color .2s ease;
+}
+
+/* Hover → red */
+.btn-retro-cta:hover{
+  background:#c62828;   /* material red tone */
+  border-color:#c62828;
+}
+  /* ===== background ===== */
+ .section-alt { background-color: #f9f9f9; }
+ 
+
+    /* ===== HERO ===== */
+.hero-wrap {
+  padding: 72px var(--gutter) 40px;
+  background-color: #FFD54F;   /* yellow full bar */
+  width: 100vh;
+  min-height: 100vh;           /* fill the whole viewport */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image {
+  background: url("/mnt/data/flyer1.png") center/contain no-repeat;
+  width: 100%;
+  max-width: 1440px;           /* keep image centered */
+  min-height: 560px;
+  border-radius: var(--radius);
+  border: 1px solid var(--hair);
+  background-color: #fff;
+  margin: 0 auto;
+}
+
+.hero-title {
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: clamp(38px, 6vw, 72px);
+  margin: 18px 0 8px;
+}
+
+.hero-kicker {
+  color: var(--ink-soft);
+  font-weight: 600;
+}
+
+    /* Subhead section (retro accent headline) */
+    .retro{font-family:"Shrikhand",cursive;letter-spacing:.2px;color:var(--brown)}
+
+    /* Feature badges (flyer feel) */
+    .badge-alt{border:1px solid var(--hair);border-radius:999px;padding:8px 14px;background:#fff;font-weight:800}
+    .badge-accent{border:2px solid var(--line);background:var(--cream);color:#1f1206}
+
+    /* Image band */
+    .img-a,.img-b{border-radius:var(--radius-sm);border:1px solid var(--hair);height:280px;background:#fff center/cover no-repeat}
+    .img-a{background-image:url("IMAGE_URL_ACTION_1")}
+    .img-b{background-image:url("IMAGE_URL_ACTION_2")}
+
+    /* Pay box */
+    .paybox{display:flex;gap:16px;flex-wrap:wrap;align-items:center;border:1px dashed var(--hair);border-radius:var(--radius-sm);padding:16px;background:#fff}
+    .qr{width:120px;height:120px;border-radius:12px;border:1px solid var(--hair)}
+
+    /* Footer */
+    .note{color:var(--ink-soft);font-size:13px}
+    .footer{border-top:1px solid var(--hair);padding:32px var(--gutter)}
+
+    /* Utilities */
+    .section{padding:48px var(--gutter)}
+    .text-brown{ color: var(--retro-brown-ink); }
+.text-orange-retro{ color: var(--retro-orange); }
+.bg-orange-retro{ background: var(--retro-orange); }
+.bg-brown{ background: var(--retro-brown); }
+.hero-bg{ background: var(--retro-cream); }
+
+.border-retro-8{ border:8px solid var(--retro-brown); }
+.rounded-2xl{ border-radius:26px; }
+.shadow-2xl{ box-shadow: 0 18px 48px rgba(0,0,0,.16); }
+
+.font-display{ font-family:'Luckiest Guy','Shrikhand',cursive; }
+
+.dashed-box{
+  border:2px dashed var(--retro-tan);
+  border-radius:14px;
+  background:#fff;
+}
+
+/* keep headings tight like your mock */
+.hero-title{ line-height: .9; letter-spacing:.2px; }
+
+/* responsive helpers to match original proportions */
+@media (min-width: 768px){
+  .w-md-50{ width:50% !important; }
+  .w-md-25{ width:25% !important; }
+}
+.org-link {
+  color: #F58A4B;            /* your retro orange */
+  font-weight: 700;
+  text-decoration: none;
+  border-bottom: 2px solid #F58A4B;
+  transition: color .2s ease, border-color .2s ease;
+}
+.org-link:hover {
+  color: #c9480f;            /* darker orange/red on hover */
+  border-color: #c9480f;
+}
+/* Fancy sponsor name styling (uses your display font if present) */
+.sponsor-fancy { 
+  font-family: 'Luckiest Guy','Shrikhand', cursive; 
+  letter-spacing:.5px; 
+}
+
+/* Compact hero sponsor grid (3 per row on md+, 2 per row on xs) */
+.hero-sponsors .logo {
+  width: 120px; height: 120px; border-radius:14px; 
+  object-fit: cover; object-position: center;
+}
+@media (min-width: 768px){
+  .hero-sponsors .col-md-4 { display:flex; justify-content:center; }
+}
+  #countdown .border { border-color: var(--hair, #d2d2d7) !important; }
+  #countdown .fw-bold { color: var(--retro-brown, #5D4037); }
+.countdown {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+.countdown div {
+  background: #5D4037;       /* retro orange */
+  color: #fff;               /* white text */
+  border-radius: 12px;
+  padding: 1rem .8rem;
+  min-width: 70px;
+  text-align: center;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+}
+
+.countdown div strong {
+  display: block;
+  font-size: 2rem;
+  line-height: 1.2;
+}
+
+.countdown span {
+  display: block;
+  font-size: .75rem;
+  font-weight: 500;
+  margin-top: .25rem;
+  text-transform: uppercase;
+  letter-spacing: .5px;
+}
+  </style>
+</head>
+<body>
+  <!-- ===== NAV ===== -->
+  <nav class="nav-apple sticky-top">
+    <div class="container-fluid" style="max-width:1200px">
+      <div class="d-flex align-items-center justify-content-between py-2">
+        <a class="fw-bold text-decoration-none" href="#">Dodgeball<span class="text-secondary">for</span>Hope</a>
+        <div class="d-none d-md-flex gap-3">
+          <a class="nav-link" href="#about">Event</a>
+          <a class="nav-link" href="#register">Register</a>
+          <a class="nav-link" href="#organizer">Contact</a>
+        </div>
+        <a href="#register" class="btn btn-primary btn-sm">
+         Register
+        </a>
+      </div>
+    </div>
+  </nav>
+  
+<!-- ===== HERO (full-width background like organizer) ===== -->
+<header id="hero" class="section hero-bg text-brown">
+  <div class="container-fluid px-0">
+    <div class="d-flex flex-column justify-content-between align-items-center p-3 p-md-4 p-lg-5">
+
+      <!-- Date ribbon (bigger) -->
+      <div class="w-100 d-flex justify-content-center align-items-center mb-3">
+        <div class="bg-orange-retro text-white py-4 px-5 rounded-3 shadow-lg">
+          <h2 class="display-6 text-center m-0 fw-bold" style="letter-spacing:1px;">
+            October 25th <span class="d-none d-sm-inline mx-3">|</span> 1:30pm–4:30pm
+          </h2>
+        </div>
+      </div>
+
+      
+
+      <div id="countdown" class="countdown"></div>
+      <br>
+
+      <!-- Main area -->
+      <div class="w-100 d-flex flex-column flex-md-row align-items-center justify-content-around text-center">
+        
+        <!-- Left Player Illustration -->
+                <div class="hidden md:block w-1/4 p-4">
+                    <svg viewBox="0 0 150 200" class="w-full h-auto" stroke-linejoin="round" stroke-linecap="round">
+                        <g fill="none" stroke="#5D4037" stroke-width="4">
+                            <!-- Headband -->
+                            <path d="M65 40 Q 75 30 85 40" stroke="white" stroke-width="8" />
+                            <path d="M65 40 Q 75 30 85 40" />
+                    
+                            <!-- Head & Hair -->
+                            <path d="M60 45 Q 75 25 90 45 Q 95 65 75 70 Q 55 65 60 45 Z" fill="#FDF4D9" />
+                            <path d="M60 45 Q 75 25 90 45" fill="#5D4037" />
+                            
+                            <!-- Mustache -->
+                            <path d="M70 62 Q 75 65 80 62" />
+                    
+                            <!-- Body -->
+                            <path d="M50 75 L 100 75 L 90 120 L 60 120 Z" fill="white" />
+                            
+                            <!-- Left Arm -->
+                            <path d="M50 75 Q 30 90 40 110" fill="white" />
+                            <path d="M48 85 L 53 90" stroke-width="2.5"/> <!-- Sleeve stripe -->
+                            <path d="M44 90 L 49 95" stroke-width="2.5"/> <!-- Sleeve stripe -->
+                            <rect x="35" y="108" width="10" height="8" rx="2" fill="white" />
+                    
+                            <!-- Right Arm -->
+                            <path d="M100 75 Q 120 90 110 115" fill="#FDF4D9" />
+                            
+                            <!-- Legs & Shorts -->
+                            <path d="M60 120 L 50 160 L 70 160 L 70 120" fill="#F58A4B" />
+                            <path d="M90 120 L 100 160 L 80 160 L 80 120" fill="#F58A4B" />
+                            
+                            <!-- Shoes -->
+                            <path d="M45 160 L 70 160 L 75 165 L 40 165 Z" fill="white" />
+                            <path d="M105 160 L 80 160 L 75 165 L 110 165 Z" fill="white" />
+                    
+                            <!-- Ball -->
+                            <circle cx="35" cy="70" r="15" fill="#F58A4B" />
+                        </g>
+                    </svg>
+                </div>
+
+        <!-- Center stack -->
+        <div class="w-100 w-md-50 d-flex flex-column align-items-center">
+          
+          <!-- Video (full-width with rounded edges) -->
+          <div class="ratio ratio-16x9 w-100 mb-3" style="max-width:1140px; border-radius:16px; overflow:hidden;">
+            <iframe
+              src="https://www.youtube.com/embed/Dgo9hzu4iV8?autoplay=1&mute=1&loop=1&playlist=Dgo9hzu4iV8&controls=0&rel=0&modestbranding=1&playsinline=1"
+              title="Dodgeball Highlight Reel"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              style="border:0; width:100%; height:100%;">
+            </iframe>
+          </div>
+          
+
+          <!-- Titles -->
+          <h1 class="font-display text-orange-retro text-uppercase fw-bold" style="font-size:clamp(2.4rem,7vw,5rem);">Charity</h1>
+          <h1 class="font-display text-brown text-uppercase fw-bold mt-n1" style="font-size:clamp(2.6rem,8vw,6rem);">Dodgeball</h1>
+          <h1 class="font-display text-orange-retro text-uppercase fw-bold mt-n1" style="font-size:clamp(2.4rem,7vw,5rem);">Tournament</h1>
+
+          <!-- Badges -->
+          <div class="mt-4 w-100" style="max-width:720px;">
+            <div class="row g-4">
+              <div class="col-6 col-md-3">
+                <div class="dashed-box p-3 h-100 text-center">
+                  <h3 class="fw-bold fs-5 mb-0">$180</h3>
+                  <small>Per Team</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="dashed-box p-3 h-100 text-center">
+                  <h3 class="fw-bold fs-5 mb-0">Prizes</h3>
+                  <small>Best Team Outfit</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="dashed-box p-3 h-100 text-center">
+                  <h3 class="fw-bold fs-5 mb-0">Raffle</h3>
+                  <small>Great Giveaways</small>
+                </div>
+              </div>
+              <div class="col-6 col-md-3">
+                <div class="dashed-box p-3 h-100 text-center">
+                  <h3 class="fw-bold fs-5 mb-0">Indoor</h3>
+                  <small>SoFIVE Lake Nona</small>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CTA -->
+          <a href="#register" class="btn btn-retro-cta mt-4">Register Your Team</a>
+        </div>
+
+        <!-- Right Player Illustration -->
+                 <div class="hidden md:block w-1/4 p-4">
+                    <svg viewBox="0 0 150 200" class="w-full h-auto" stroke-linejoin="round" stroke-linecap="round">
+                        <g fill="none" stroke="#5D4037" stroke-width="4">
+                            <!-- Headband -->
+                            <path d="M85 40 Q 75 30 65 40" stroke="white" stroke-width="8" />
+                            <path d="M85 40 Q 75 30 65 40" />
+                    
+                            <!-- Head & Hair -->
+                            <path d="M90 45 Q 75 25 60 45 Q 55 65 75 70 Q 95 65 90 45 Z" fill="#FDF4D9" />
+                            <path d="M60 45 Q 75 25 90 45 T 95 55 C 85 40 65 40 55 55 T 60 45" fill="#5D4037" />
+                            
+                            <!-- Body -->
+                            <path d="M100 75 L 50 75 L 60 120 L 90 120 Z" fill="white" />
+                            
+                            <!-- Left Arm (throwing) -->
+                            <path d="M100 75 Q 125 65 120 90" fill="#FDF4D9" />
+                            <path d="M98 85 L 103 90" stroke-width="2.5" />
+                    
+                            <!-- Right Arm -->
+                            <path d="M50 75 Q 30 90 40 110" fill="white" />
+                            <path d="M48 85 L 53 90" stroke-width="2.5"/>
+                            
+                            <!-- Legs & Shorts -->
+                            <path d="M60 120 L 50 160 L 70 160 L 70 120" fill="#F58A4B" />
+                            <path d="M90 120 L 100 160 L 80 160 L 80 120" fill="#F58A4B" />
+                            
+                            <!-- Shoes -->
+                            <path d="M45 160 L 70 160 L 75 165 L 40 165 Z" fill="white" />
+                            <path d="M105 160 L 80 160 L 75 165 L 110 165 Z" fill="white" />
+                    
+                            <!-- Ball -->
+                            <circle cx="125" cy="65" r="15" fill="#F58A4B" />
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+
+      <!-- Beneficiary footer -->
+      <div class="w-100 text-center mt-3">
+        <p class="fw-semibold text-uppercase mb-1">All Proceeds Benefit</p>
+        <p class="font-display text-orange-retro fs-2 mb-1">Runway to Hope</p>
+        <p class="fw-semibold small mb-1">SoFIVE Lake Nona • 12314 Suttner Ave, Orlando, FL 32827</p>
+        <p class="text-uppercase sponsor-fancy small mb-0">
+          Sponsors: Appli • Bradford Roofing • East Coast Title • Momentum Insurance • Pillar to Post • Orlando Cyber Security
+        </p>
+      </div>
+
+    </div>
+  </div>
+</header>
+
+
+
+ <!-- ===== ABOUT (centered title + ticket badges + big map icons) ===== -->
+<section id="about" class="section section-alt">
+  <div class="container" style="max-width:1100px">
+    <div class="p-4 p-md-5">
+      <!-- Centered title -->
+      <h2 class="retro h1 section-title">About the Event</h2>
+
+      <div class="row g-4 align-items-start">
+        <!-- Left: copy + details -->
+        <div class="col-lg-7">
+          <ul class="fs-5 mb-4">
+            <li><strong>$180</strong> per team (6 players) • <strong>$45</strong> solo</li>
+            <li>Cap: <strong>8 teams</strong> • Matches are <strong>best-of-3</strong></li>
+            <li><strong>No refunds</strong> — all proceeds support the mission ❤️</li>
+            <li>Prizes for the <strong>Best Team Costume</strong> + an in-person <strong>raffle</strong></li>
+          </ul>
+
+          <!-- Address -->
+          <p class="location-line">
+            <strong>Location:</strong>
+            SoFIVE Lake Nona • 12314 Suttner Ave, Orlando, FL 32827
+          </p>
+
+          <!-- Ticket-style badges -->
+          <div class="d-flex flex-wrap gap-2 mb-3">
+            <span class="badge-ticket">Team • $180</span>
+            <span class="badge-ticket">Solo • $45</span>
+            <span class="badge-ticket">6 on a Team</span>
+          </div>
+
+          <!-- Large map buttons with icons -->
+          <div class="maps-row">
+            <!-- Apple Maps -->
+            <a class="map-btn"
+               href="https://maps.apple.com/?address=12314%20Suttner%20Ave,Orlando,FL%2032827"
+               target="_blank" rel="noopener">
+              <svg class="map-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#000" d="M16.365 1.43c-.93.06-2.02.6-2.67 1.31-.63.69-1.18 1.8-1.02 2.86 1.06.04 2.15-.58 2.79-1.3.64-.74 1.14-1.85.91-2.87zm3.23 6.1c-1.77.09-3.28 1.02-4.3 1.02-1.02 0-2.56-.98-4.21-.95-2.16.03-4.15 1.25-5.25 3.16-2.25 3.91-.58 9.69 1.59 12.86 1.05 1.52 2.29 3.22 3.96 3.16 1.58-.06 2.18-1.02 4.09-1.02 1.9 0 2.45 1.02 4.11.98 1.69-.03 2.76-1.55 3.8-3.08 1.2-1.75 1.7-3.44 1.72-3.53-.04-.02-3.31-1.27-3.35-5.03-.03-3.16 2.57-4.66 2.69-4.73-1.47-2.15-3.74-2.34-4.85-2.3z"/>
+              </svg>
+              Apple Maps
+            </a>
+
+            <!-- Google Maps (works on Android & iOS) -->
+            <a class="map-btn"
+               href="https://www.google.com/maps/search/?api=1&query=SoFIVE%20Lake%20Nona%2C%2012314%20Suttner%20Ave%2C%20Orlando%2C%20FL%2032827"
+               target="_blank" rel="noopener">
+              <svg class="map-icon" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="#34A853" d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7z"/>
+                <circle cx="12" cy="9" r="3.2" fill="#4285F4"/>
+              </svg>
+              Google Maps
+            </a>
+          </div>
+        </div>
+
+        <!-- Right: embedded Google Map -->
+        <div class="col-lg-5">
+          <div class="ratio ratio-16x9 rounded-3" style="border:1px solid var(--hair); overflow:hidden;">
+            <iframe
+              title="Map — SoFIVE Lake Nona"
+              src="https://www.google.com/maps?q=12314%20Suttner%20Ave%2C%20Orlando%2C%20FL%2032827&output=embed"
+              loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen>
+            </iframe>
+          </div>
+          <small class="note d-block mt-2">
+            SoFIVE Lake Nona • 12314 Suttner Ave, Orlando, FL 32827
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+ 
+
+
+  <!-- ===== REGISTER (JotForm embed, centered) ===== -->
+<section id="register" class="section pt-0">
+  <div class="container" style="max-width:1100px">
+    <div class="p-4 p-md-5 text-center">
+      <h2 class="retro h1 mb-2">Register Now</h2>
+      <p class="note mb-4">Complete the form below to secure your spot.</p>
+
+      <!-- Frame shell for consistent sizing + subtle Apple-like card feel -->
+      <div class="mx-auto" style="max-width:100%; background:#fff; border:1px solid var(--hair); border-radius:16px; box-shadow:var(--shadow); padding:8px;">
+        <iframe
+          id="JotFormIFrame-252665868641066"
+          title="Dodgeball for Hope Registration"
+          allowtransparency="true"
+          allow="geolocation; microphone; camera; fullscreen; payment"
+          src="https://pci.jotform.com/form/252665868641066"
+          frameborder="0"
+          scrolling="no"
+          style="width:100%; min-height: 720px; border:none; border-radius:12px;"
+        ></iframe>
+      </div>
+
+      <!-- Fallback direct link -->
+      <p class="note mt-3 mb-0">
+        Having trouble loading the form? 
+        <a href="https://pci.jotform.com/form/252665868641066" target="_blank" rel="noopener">Open it in a new tab</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- JotForm auto-resize handler -->
+<script src="https://cdn.jotfor.ms/s/umd/latest/for-form-embed-handler.js"></script>
+<script>
+  window.jotformEmbedHandler("iframe[id='JotFormIFrame-252665868641066']", "https://pci.jotform.com/");
+</script>
+
+ 
+
+  <!-- ===== OUR SPONSORS ===== -->
+<section id="sponsors" class="section section-alt">
+  <div class="container" style="max-width:1100px">
+    <div class="p-4 p-md-5 text-center">
+      <h2 class="retro h1 mb-5">Our Sponsors</h2>
+
+      <div class="row g-4 justify-content-center">
+        <!-- Sponsor 1 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="appli.png" alt="Appli Home Loans"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy fs-5 mb-0">Appli Home Loans</p>
+          </div>
+        </div>
+
+        <!-- Sponsor 2 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="brlogo2.png" alt="Bradford Roofing"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy fs-5 mb-0">Bradford Roofing & Construction</p>
+          </div>
+        </div>
+
+        <!-- Sponsor 3 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="Eastcoast.JPG" alt="East Coast Title"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy fs-5 mb-0">East Coast Title</p>
+          </div>
+        </div>
+
+        <!-- Sponsor 4 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="MI.jpg" alt="Momentum Insurance"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy fs-5 mb-0">Momentum Insurance</p>
+          </div>
+        </div>
+
+        <!-- Sponsor 5 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="sam.png" alt="Sam"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy fs-5 mb-0">Pillar to Post-The Grasso Team</p>
+          </div>
+        </div>
+
+        <!-- Sponsor 6 -->
+        <div class="col-12 col-md-4">
+          <div class="d-flex flex-column align-items-center">
+            <img src="ocs logo paper.png" alt="Orlando Cyber Security"
+                 class="img-fluid rounded-4 mb-3"
+                 style="max-height:180px; object-fit:contain;">
+            <p class="fw-semibold sponsor-fancy mb-0">Orlando Cyber Security</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+ 
+
+ <!-- ===== ABOUT RUNWAY TO HOPE ===== -->
+<section id="about-rth" class="section section-alt">
+  <div class="container" style="max-width:1100px">
+    <div class="p-4 p-md-5">
+
+      <!-- Centered title -->
+      <h2 class="retro h1 text-center mb-4">About Runway to Hope</h2>
+
+      <div class="row align-items-center g-4">
+        <!-- Left: official image -->
+        <div class="col-md-6 text-center">
+          <img
+            src="https://static-files.umso.co/lib_qZhbJVNjmORDcePq/c04yi7mc3e8i8a7z.png?fit=max&h=900&w=1200"
+            alt="Runway to Hope — child and supporter on the runway"
+            class="img-fluid rounded-3"
+            style="max-height: 420px; object-fit: contain;"
+          >
+        </div>
+
+        <!-- Right: passionate copy -->
+        <div class="col-md-6">
+          <p class="fs-4 fw-semibold mb-3" style="line-height:1.5;">
+            Runway to Hope passionately stands beside children and families in the fight against pediatric cancer —
+            delivering urgent financial relief when it’s needed most, strengthening Central Florida’s pediatric oncology programs,
+            and rallying an entire community to bring comfort, <span style="color:#F58A4B; font-weight:700;">Hope</span>, and lasting impact.
+          </p>
+
+          <a href="https://runwaytohope.org/" target="_blank" rel="noopener"
+   class="btn btn-lg mt-3 px-4 py-2"
+   style="background-color:#5D4037; color:#fff; border:none;">
+  Learn More
+</a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ===== ORGANIZER (simple) ===== -->
+<section id="organizer" class="section gray-bg">
+  <div class="container">
+    <div class="row align-items-center justify-content-around flex-row-reverse">
+      <!-- Right column: small image (headshot or logo) -->
+      <div class="col-lg-5 text-center">
+        <div class="about-img">
+          <!-- Swap the src with a headshot or brand mark -->
+          <img src="headshot.jpeg" alt="Organizer — Carrie Casey" class="img-fluid rounded-3">
+        </div>
+      </div>
+
+      <!-- Left column: copy -->
+      <div class="col-lg-6">
+        <div class="about-text">
+          <h3 class="dark-color">Organizer Info</h3>
+          <h2 class="theme-color fs-1">Carrie Casey </h2>
+
+          <!-- Quick facts (optional; remove if you want even simpler) -->
+          <div class="about-list">
+            <div class="media d-flex align-items-center">
+              <label>Email</label>
+              <p><a href="mailto:carrie@applihl.com">carrie@applihl.com</a></p>
+            </div>
+            <div class="media d-flex align-items-center">
+              <label>Instagram</label>
+              <p><a href="https://instagram.com/CarrieCasey_Home" target="_blank" rel="noopener">@CarrieCasey_Home</a></p>
+            </div>
+            <div class="media d-flex align-items-center">
+              <label>Venue</label>
+              <p>SoFIVE Lake Nona • 12314 Suttner Ave, Orlando, FL 32827</p>
+            </div>
+          </div>
+
+          <div class="btn-bar mt-3">
+            <a class="px-btn theme" href="mailto:carrie@applihl.com">Email Carrie</a>
+            <a class="px-btn theme-t" href="#register">Register Now</a>
+          </div>
+
+          <p class="mt-3 small text-muted">
+            Equal Housing Lender • #CarrieClosesLoans
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ 
+
+  <footer class="footer text-center note">
+    <div class="container" style="max-width:1100px">© 2025 Dodgeball for Hope • All proceeds benefit Runway to Hope</div>
+  </footer>
+
+  <!-- ===== Modal ===== -->
+  <div class="modal fade" id="regModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content" style="border:1px solid var(--hair);border-radius:var(--radius)">
+        <div class="modal-header">
+          <h5 class="modal-title">Register — Dodgeball for Hope</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Swap FORM_ID_HERE with your Gravity/GHL form id (3 places) -->
+          <script src="https://api.leadconnectorhq.com/widget/form/FORM_ID_HERE.js" type="text/javascript" charset="utf-8"></script>
+          <link href="https://api.leadconnectorhq.com/widget/form/FORM_ID_HERE.css" rel="stylesheet">
+          <div class="lc-form-embed" data-form-id="FORM_ID_HERE"></div>
+          <p class="note mt-2 mb-0">You’ll get a confirmation by text/email. No refunds (charity event).</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <!-- <script>
+    // Countdown to Oct 25, 2025 1:30 PM ET
+    (function(){
+      const el=document.getElementById('countdown'); if(!el) return;
+      const target=new Date('2025-10-25T13:30:00-04:00').getTime();
+      function tick(){
+        const d=Math.max(0, target - Date.now());
+        const days=Math.floor(d/86400000), hrs=Math.floor((d%86400000)/3600000), mins=Math.floor((d%3600000)/60000);
+        el.textContent=`Spots go fast — ${days}d ${hrs}h ${mins}m to first serve`;
+      }
+      tick(); setInterval(tick, 30000);
+    })();
+  </script>-->
+
+
+
+<!-- Init -->
+<script>
+  const targetDate = new Date("October 25, 2025 13:30:00 -0400").getTime();
+  const countdownEl = document.getElementById("countdown");
+
+  function updateCountdown() {
+    const now = new Date().getTime();
+    const distance = targetDate - now;
+
+    if (distance <= 0) {
+      countdownEl.innerHTML = "<div><strong>0</strong><span>Game Time!</span></div>";
+      return;
+    }
+
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    countdownEl.innerHTML = `
+      <div><strong>${days}</strong><span>Days</span></div>
+      <div><strong>${hours}</strong><span>Hours</span></div>
+      <div><strong>${minutes}</strong><span>Min</span></div>
+      <div><strong>${seconds}</strong><span>Sec</span></div>
+    `;
+  }
+
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
+
+</body>
+</html>
